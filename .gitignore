@@ -1,3 +1,6 @@
 /build/
 *.xml
 *.iml
+dist/password.txt
+dist/signature.
+dist/test.pdf

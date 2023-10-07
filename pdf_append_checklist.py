@@ -37,28 +37,12 @@ if __name__ == '__main__':
             output_path = file_path.replace('.', '_lock.')
 
     if is_test:
-        file_path = f'{PATH}\\dist\\test.pdf'
-        output_path = f'{PATH}\\dist\\output_test.pdf'
+        file_path = f'{PATH}\\dist\\test_prev.pdf'
 
     text = text_extractor(file_path)
     fields = extract_fields(text)
-    if 'instal' in fields["problem"].lower():
-        print('Installation found')
-        signed_path = signature_install(file_path)
-        print(signed_path)
-    elif 'prev' in fields["problem"].lower():
+    if 'prev' in fields["problem"].lower():
         print('Preventive found')
-        signed_path = signature_preventive(file_path)
-        print(signed_path)
-        append_checklist(signed_path, fields=fields, is_clean=True)
-
-    reader = PdfReader(f"{file_path}")
-    reader.pages
-    writer = PdfWriter()
-    writer.append_pages_from_reader(reader)
-    writer.encrypt(user_password='', owner_password=password, permissions_flag=NEEDED)
-
-    with open(f"{output_path}", "wb") as out_file:
-        writer.write(out_file)
+        append_checklist(file_path, fields=fields, is_clean=True)
 
     pause()
