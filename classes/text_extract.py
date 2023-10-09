@@ -18,7 +18,7 @@ def extract_fields(text):
         elif '0000' in code:
             employee_number = code
         else:
-            serial = code
+                serial = code
 
     employee = re.search(rf'{employee_number}\s(.+)', text).group(1)
     state = re.search(r'\w+\,\sM[eé]xico', text).group(0)
